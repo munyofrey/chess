@@ -5,7 +5,7 @@ load 'board.rb'
 class Display
   include Cursorable
 
-  attr_reader :selected, :cursor_pos
+  attr_reader :selected, :cursor_pos, :board
 
   def initialize(board)
     @board = board
@@ -19,7 +19,7 @@ class Display
   end
 
   private
-  
+
   def toggle_selected
     @selected = !@selected
   end
