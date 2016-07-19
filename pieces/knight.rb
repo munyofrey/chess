@@ -3,7 +3,7 @@ require_relative "piece"
 class Knight < Piece
   include Stepping
 
-  def initialize(pos, color, board, unicode=["\u2658", "\u265E"])
+  def initialize(pos, color, board, unicode= "\u265E")
     super
   end
 

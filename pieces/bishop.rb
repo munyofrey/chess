@@ -3,7 +3,7 @@ require_relative "piece"
 class Bishop < Piece
   include Sliding
 
-  def initialize(pos, color, board, unicode=["\u2657", "\u265D"])
+  def initialize(pos, color, board, unicode= "\u265D")
     super
   end
 

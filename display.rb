@@ -49,7 +49,13 @@ class Display
     else
       bg = :light_white
     end
-    { background: bg, color: :white }
+    { background: bg, color: piece_color(i,j) }
   end
+
+  def piece_color(i,j)
+    @board[[i,j]].color unless @board[[i,j]].empty?
+  end
+
+
 
 end

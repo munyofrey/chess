@@ -3,7 +3,7 @@ require_relative "piece"
 class Rook < Piece
   include Sliding
 
-  def initialize(pos, color, board, unicode=["\u2656", "\u265C"])
+  def initialize(pos, color, board, unicode= "\u265C")
     super
   end
 

@@ -3,7 +3,7 @@ require_relative "piece"
 class Queen < Piece
   include Sliding
 
-  def initialize(pos, color, board, unicode=["\u2655", "\u265B"])
+  def initialize(pos, color, board, unicode="\u265B")
     super
   end
 

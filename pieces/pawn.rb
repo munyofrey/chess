@@ -5,7 +5,7 @@ class Pawn < Piece
   BOTTOM_MOVES = [-1, 0]
   BOTTOM_ATTACKS = [[-1, -1], [-1, 1]]
 
-  def initialize(pos, color, board, unicode=["\u2659", "\u265F"])
+  def initialize(pos, color, board, unicode= "\u265F")
     super
     @top = (@color == :black)
     @starting = pos

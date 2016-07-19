@@ -5,7 +5,7 @@ class Piece
   def initialize(pos, color, board, unicode)
     @pos = pos
     @color = color
-    @unicode = (color == :white ? unicode[0] : unicode[1])
+    @unicode = unicode
     @board = board
   end
 
@@ -43,5 +43,5 @@ class Piece
   def oppenent_color
     @color == :white ? :black : :white
   end
-  
+
 end
