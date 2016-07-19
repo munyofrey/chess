@@ -14,9 +14,9 @@ class Game
 
 
   def play
-    # @board.move([6, 5], [5, 5])
-    # @board.move([1, 4], [3, 4])
-    # @board.move([6, 6], [4, 6])
+    @board.move([6, 5], [5, 5])
+    @board.move([1, 4], [3, 4])
+    @board.move([6, 6], [4, 6])
     until over?
       begin
         @display.render
@@ -33,6 +33,7 @@ class Game
       end
       swap_players
     end
+    puts "Game over"
   end
 
   private
@@ -57,8 +58,8 @@ if __FILE__ == $PROGRAM_NAME
 
   b=Board.new
   d = Display.new(b)
-  play2 = Player.new(d, :black)
-  play1 = Player.new(d, :white)
+  play1 = Player.new(d, :black)
+  play2 = Player.new(d, :white)
   g = Game.new(b, d, play1, play2)
   g.play
 
