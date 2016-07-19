@@ -2,7 +2,7 @@ require_relative 'manifest'
 require 'byebug'
 
 class Board
-  
+
 
   def initialize(grid = Array.new(8) { Array.new(8) })
     @grid = grid
@@ -26,7 +26,8 @@ class Board
   end
 
   def game_over?
-    check_mate?(:white) || check_mate?(:black)
+    (check_mate?(:white) || check_mate?(:black)) ||
+    (find_king(:white).nil? || find_king(:black).nil?)
   end
 
 
@@ -44,7 +45,17 @@ class Board
     @grid[row][col] = mark
   end
 
-  protected
+  def dup
+    new_board = Board.new
+    @grid.each_with_index do |row, row_idx|
+      row.each_with_index do |piece, col_idx|
+        new_board[[row_idx, col_idx]] = piece.dup(new_board)
+      end
+    end
+    new_board
+  end
+
+  # protected
 
   def in_check?(color)
     king_pos = find_king(color)
@@ -58,6 +69,7 @@ class Board
     end
     false
   end
+
   private
 
   def find_king(color)
@@ -66,6 +78,7 @@ class Board
         return piece.pos if piece.color == color && piece.class == King
       end
     end
+    nil
   end
 
   def check_mate?(color)
@@ -83,18 +96,6 @@ class Board
     end
     true
   end
-
-
-  def dup
-    new_board = Board.new
-    @grid.each_with_index do |row, row_idx|
-      row.each_with_index do |piece, col_idx|
-        new_board[[row_idx, col_idx]] = piece.dup(new_board)
-      end
-    end
-    new_board
-  end
-
 
 
   def populate_board

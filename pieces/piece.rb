@@ -33,6 +33,16 @@ class Piece
     " #{@unicode} "
   end
 
+  def find_check_moves
+      self.moves.each do |move|
+        dup_board = @board.dup
+        dup_board.move(@pos, move)
+        return move if dup_board.in_check?(oppenent_color)
+      end
+      []
+  end
+
+
   private
 
   def valid_move?(pos)
@@ -43,5 +53,8 @@ class Piece
   def oppenent_color
     @color == :white ? :black : :white
   end
+
+
+
 
 end

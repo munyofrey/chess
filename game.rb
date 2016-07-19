@@ -57,8 +57,8 @@ if __FILE__ == $PROGRAM_NAME
 
   b=Board.new
   d = Display.new(b)
-  play1 = Player.new(d, :black)
-  play2 = ComputerPlayer.new(d, :white)
+  play2 = Player.new(d, :black)
+  play1 = Player.new(d, :white)
   g = Game.new(b, d, play1, play2)
   g.play
 

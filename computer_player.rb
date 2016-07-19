@@ -9,6 +9,7 @@ class ComputerPlayer
   end
 
   def make_move
+
     start_piece = select_start
 
     end_pos = select_end(start_piece)
@@ -29,12 +30,20 @@ class ComputerPlayer
     end
     pieces = pieces.reject {|piece| piece.moves.empty? }
 
+    pieces.each do |piece|
+      return piece if piece.find_check_moves.length == 1
+    end
+
     attacks = find_attacks(pieces)
     return attacks.sample unless attacks.empty?
     pieces.sample
   end
 
   def select_end(piece)
+    return piece.find_check_moves if piece.find_check_moves == 1
+
+
+
     moves = piece.moves.reject do |move|
       @board[move].empty?
     end
@@ -52,5 +61,7 @@ class ComputerPlayer
     end
     return attacks
   end
+
+
 
 end
