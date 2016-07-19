@@ -5,6 +5,8 @@ load 'board.rb'
 class Display
   include Cursorable
 
+  attr_reader :selected, :cursor_pos
+
   def initialize(board)
     @board = board
     @cursor_pos = [0, 0]

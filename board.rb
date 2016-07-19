@@ -56,11 +56,15 @@ class Board
 
   def move(start, end_pos)
     piece = self[start]
-    #change when nullpiece made to  if piece.empty?
-    raise "not a piece" unless piece.is_a?(Piece)
-    #update to check if piece is same or opposite team
-    self[end_pos] = piece
-    self[start] = nil
+
+    raise "not a piece" if piece.empty?
+    if piece.moves.include?(end_pos)
+      self[end_pos] = piece
+      piece.pos = end_pos
+      self[start] = NullPiece.instance
+    else
+      raise "invalid move"
+    end
   end
 
   def in_bounds?(pos)
@@ -81,6 +85,14 @@ class Board
   def []=(pos, mark)
     row, col = pos
     @grid[row][col] = mark
+  end
+
+
+
+
+
+  def check_mate?
+    false
   end
 
 end
