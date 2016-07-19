@@ -38,9 +38,9 @@ class Display
     elsif [i, j] == @cursor_pos #don't we need something about being selected?
       bg = :light_red
     elsif (i + j).odd?
-      bg = :light_blue
+      bg = :light_black
     else
-      bg = :blue
+      bg = :light_white
     end
     { background: bg, color: :white }
   end

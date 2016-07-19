@@ -19,12 +19,20 @@ class Game
 
 
     until over?
-      @display.render
-      puts "current player is #{@current_player.color}"
-      move = @current_player.make_move
-      move_first, move_last = move
-      raise "You are cheating" unless @board[move_first].color == @current_player.color
-      @board.move(move_first, move_last)
+      begin
+
+        @display.render
+        puts "current player is #{@current_player.color}"
+        move = @current_player.make_move
+        move_first, move_last = move
+        raise "Not a piece" if @board[move_first].empty?
+        raise "You are cheating" unless @board[move_first].color == @current_player.color
+        @board.move(move_first, move_last)
+      rescue => e
+        puts e.message
+        sleep(1)
+        retry
+      end
       swap_players
     end
   end

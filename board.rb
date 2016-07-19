@@ -57,7 +57,7 @@ class Board
 
   def move(start, end_pos)
     piece = self[start]
-
+    
     raise "not a piece" if piece.empty?
     if piece.moves.include?(end_pos)
       self[end_pos] = piece
