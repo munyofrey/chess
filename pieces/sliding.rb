@@ -5,6 +5,8 @@ module Sliding
   ROOK_DELTA = [[1, 0], [-1, 0], [0, -1], [0, 1]]
   QUEEN_DELTA = BISHOP_DELTA + ROOK_DELTA
 
+  private
+
   def moves_opts(deltas)
     moves = []
     deltas.each do |delta|

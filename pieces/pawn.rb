@@ -14,10 +14,8 @@ class Pawn < Piece
   def moves
     attack_moves + reg_moves
   end
-  #
-  # def moves_opts
-  #
-  # end
+
+  private
 
   def attack_moves
     moves = []

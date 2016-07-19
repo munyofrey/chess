@@ -10,6 +10,7 @@ class Piece
   end
 
   def moves
+    #defined in subclasses
   end
 
   def empty?
@@ -20,18 +21,7 @@ class Piece
     @color
   end
 
-  def valid_move?(pos)
-    @board.in_bounds?(pos) && (@board[pos].empty? ||
-     @board[pos].color != self.color)
-  end
 
-  def to_s
-    " #{@unicode} "
-  end
-
-  def oppenent_color
-    @color == :white ? :black : :white
-  end
 
   def dup(board)
     class_piece = self.class
@@ -39,5 +29,19 @@ class Piece
     class_piece.new(new_pos, self.color, board)
   end
 
+  def to_s
+    " #{@unicode} "
+  end
 
+  private
+
+  def valid_move?(pos)
+    @board.in_bounds?(pos) && (@board[pos].empty? ||
+     @board[pos].color != self.color)
+  end
+
+  def oppenent_color
+    @color == :white ? :black : :white
+  end
+  
 end

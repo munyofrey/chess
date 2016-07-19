@@ -13,6 +13,13 @@ class Display
     @selected = false
   end
 
+  def render
+    system("clear")
+    build_grid.each { |row| puts row.join }
+  end
+
+  private
+  
   def toggle_selected
     @selected = !@selected
   end
@@ -35,7 +42,7 @@ class Display
   def colors_for(i, j)
     if [i, j] == @cursor_pos && @selected
       bg = :light_green
-    elsif [i, j] == @cursor_pos #don't we need something about being selected?
+    elsif [i, j] == @cursor_pos
       bg = :light_red
     elsif (i + j).odd?
       bg = :light_black
@@ -45,11 +52,4 @@ class Display
     { background: bg, color: :white }
   end
 
-  def render
-    system("clear")
-    # puts "Fill the grid!"
-    # puts "Arrow keys, WASD, or vim to move, space or enter to confirm."
-    build_grid.each { |row| puts row.join }
-
-  end
 end
