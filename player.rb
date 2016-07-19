@@ -1,7 +1,8 @@
 class Player
-
-  def initialize(display)
+  attr_reader :color
+  def initialize(display, color)
     @display = display
+    @color = color
   end
 
   def make_move

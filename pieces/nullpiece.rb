@@ -19,5 +19,8 @@ class NullPiece
     :none
   end
 
+  def dup(board)
+    NullPiece.instance
+  end
 
 end

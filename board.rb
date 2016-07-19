@@ -1,4 +1,5 @@
 require_relative 'manifest'
+require 'byebug'
 
 class Board
   def initialize(grid = Array.new(8) { Array.new(8) })
@@ -88,11 +89,57 @@ class Board
   end
 
 
-
-
-
-  def check_mate?
+  def in_check?(color)
+    king_pos = find_king(color)
+    oppenent_color = (color == :white ? :black : :white)
+    @grid.each do |row|
+      row.each do |piece|
+        if piece.color == oppenent_color
+          return true if piece.moves.include?(king_pos)
+        end
+      end
+    end
     false
+  end
+
+  def find_king(color)
+    @grid.each do |row|
+      row.each do |piece|
+        return piece.pos if piece.color == color && piece.class == King
+      end
+    end
+  end
+
+  def check_mate?(color)
+    return false unless in_check?(color)
+
+    @grid.each_with_index do |row, row_idx|
+      row.each_with_index do |piece, col_idx|
+        next unless piece.color == color
+        piece.moves.each do |move|
+          dup_board = self.dup
+          dup_board.move([row_idx, col_idx], move)
+          return false unless dup_board.in_check?(color)
+        end
+      end
+    end
+    true
+  end
+
+
+  def dup
+    new_board = Board.new
+    @grid.each_with_index do |row, row_idx|
+      row.each_with_index do |piece, col_idx|
+        new_board[[row_idx, col_idx]] = piece.dup(new_board)
+      end
+    end
+    new_board
+  end
+
+
+  def game_over?
+    check_mate?(:white) || check_mate?(:black)
   end
 
 end

@@ -33,4 +33,11 @@ class Piece
     @color == :white ? :black : :white
   end
 
+  def dup(board)
+    class_piece = self.class
+    new_pos = self.pos.dup
+    class_piece.new(new_pos, self.color, board)
+  end
+
+
 end
